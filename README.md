@@ -7,7 +7,7 @@ Eye Tractor App é um aplicativo dedicado a auxiliar o uso dos equipamentos Eye 
 - Xamarim 2016
 
 
-## Contributing
+## Contribuição
 Pull requests são bem vindos!
 
 ## Autores
