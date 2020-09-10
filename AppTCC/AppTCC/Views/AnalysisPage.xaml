@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:AppTCC.ViewModels"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="AppTCC.Views.AnalysisPage">
+
+    <ContentPage.BindingContext>
+        <local:AnalysisViewModel/>        
+    </ContentPage.BindingContext>
+
+    <chart:SfChart>
+
+        <chart:SfChart.Title>
+            <chart:ChartTitle Text="Normal vs Desatencao"/>
+        </chart:SfChart.Title>
+
+        <chart:SfChart.Legend>
+            <chart:ChartLegend/>
+        </chart:SfChart.Legend>
+        
+        <chart:SfChart.PrimaryAxis>
+            <chart:CategoryAxis>
+                <chart:CategoryAxis.Title>
+                    <chart:ChartAxisTitle Text="Quantidade"/>
+                </chart:CategoryAxis.Title>
+            </chart:CategoryAxis>
+        </chart:SfChart.PrimaryAxis>
+
+        <chart:SfChart.SecondaryAxis>
+            <chart:NumericalAxis/>
+        </chart:SfChart.SecondaryAxis>
+
+        <chart:ColumnSeries ItemsSource="{Binding Events}"
+                            XBindingPath="EventDate"
+                            YBindingPath="Normal"
+                            Label="Normal"/>
+
+        <chart:ColumnSeries ItemsSource="{Binding Events}"
+                            XBindingPath="EventDate"
+                            YBindingPath="Disattention"
+                            Label="Desatencao"/>
+
+
+    </chart:SfChart>
+    
+    
+    
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>-->
+    
+</ContentPage>

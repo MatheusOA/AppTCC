@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Syncfusion.SfChart.XForms.iOS.Renderers;
 using UIKit;
 
 namespace AppTCC.iOS
@@ -24,6 +25,7 @@ namespace AppTCC.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            SfChartRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
