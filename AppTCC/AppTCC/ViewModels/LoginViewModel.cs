@@ -12,6 +12,7 @@ namespace AppTCC.ViewModels
 
         public LoginViewModel()
         {
+            Title = "Eye Tractor";
             LoginCommand = new Command(OnLoginClicked);
         }
 
