@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AppTCC.Models
+﻿namespace AppTCC.Models
 {
     public class EventData
     {
