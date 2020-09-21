@@ -1,23 +1,16 @@
 ﻿using AppTCC.Interfaces;
 using AppTCC.Models;
-using AppTCC.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
-namespace AppTCC.ViewModels
+namespace AppTCC.Services
 {
-    public class AnalysisViewModel
+    public class MockDataAnalysis: IDataAnalysis<EventData>
     {
-        public List<EventData> Events { get; set; }
-        public MockDataAnalysis AnalysisStore = new MockDataAnalysis();
+        readonly List<EventData> Events;
 
-        public AnalysisViewModel()
+        public MockDataAnalysis()
         {
-            //Events = AnalysisStore.GetItemsAsync().GetAwaiter().GetResult().ToList();
-
             Events = new List<EventData>
             {
                 new EventData() { EventDate = "2020-09-09", Normal = 3, Disattention = 7 },
@@ -27,6 +20,11 @@ namespace AppTCC.ViewModels
                 new EventData() { EventDate = "2020-09-05", Normal = 9, Disattention = 13 },
                 new EventData() { EventDate = "2020-09-04", Normal = 1, Disattention = 2 },
             };
+        }
+
+        public async Task<IEnumerable<EventData>> GetItemsAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(Events);
         }
     }
 }

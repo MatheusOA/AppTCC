@@ -11,6 +11,8 @@ namespace AppTCC
 
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzE5ODY0QDMxMzgyZTMyMmUzMFNlVk9iNldyNDM2dEI5MUFqVHBOU1JXUUt6cUNVSTgyVC9CUmxFa2cyZU09");
+
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
