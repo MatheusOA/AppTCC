@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppTCC.Views
+namespace AppTCC.CustomCells
 {
-    public partial class AnalysisPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TextInViewCell : ViewCell
     {
-        public AnalysisPage()
+        public TextInViewCell()
         {
             InitializeComponent();
         }
