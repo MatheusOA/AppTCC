@@ -7,10 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Places.json" />
+    <None Remove="PlacesB.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="PlacesB.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.2.0.57" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.6.0.1141" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Places.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +39,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MapsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SupportPage.xaml">

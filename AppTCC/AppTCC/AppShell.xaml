@@ -84,7 +84,7 @@
         <!--<ShellContent Title="Browse" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />-->
         <ShellContent Title="Monitoramento" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:AnalysisPage}" />
         <!--<ShellContent Title="Monitoramento" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:AnalysisPage}" />-->
-
+        <ShellContent Title="Locais de Venda" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:MapsPage}" />
         <ShellContent Title="Suporte" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:SupportPage}" />
     </FlyoutItem>
 
