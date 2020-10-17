@@ -63,7 +63,7 @@ namespace AppTCC.Views
                 MyMap.ItemsSource = placesList;
                 //PlacesListView.ItemsSource = placesList;
                 //var loc = await Xamarin.Essentials.Geolocation.GetLocationAsync();
-                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(47.6370891183, -122.123736172), Distance.FromKilometers(100)));
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(currentLocation.Location.lat, currentLocation.Location.lng), Distance.FromKilometers(100)));
 
             }
             catch (Exception ex)
