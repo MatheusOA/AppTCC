@@ -14,8 +14,26 @@ namespace AppTCC.Views
     {
         public LoginPage()
         {
+            var vm = new LoginViewModel();
+            this.BindingContext = vm;
+
+            vm.ExibirAvisoDeLoginInvalido += () => DisplayAlert("Erro", "Login Inválido, tente novamente", "OK");
+
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+
+            
+
+            Username.Completed += (object sender, EventArgs e) =>
+            {
+                var a = vm.Username;
+                Password.Focus();
+            };
+            Password.Completed += (object sender, EventArgs e) =>
+            {
+                vm.SubmitCommand.Execute(null);
+            };
+
+            vm.LoginComSucesso += () => Application.Current.MainPage = new AppShell();
         }
     }
 }

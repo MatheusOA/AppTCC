@@ -3,30 +3,46 @@ using AppTCC.Models;
 using AppTCC.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AppTCC.ViewModels
 {
     public class AnalysisViewModel
     {
-        public List<EventData> Events { get; set; }
-        public MockDataAnalysis AnalysisStore = new MockDataAnalysis();
+        public ObservableCollection<DateEvent> Events { get; set; }
+        public AnalysisService _analysisService = new AnalysisService();
+        private object chart;
 
         public AnalysisViewModel()
         {
-            //Events = AnalysisStore.GetItemsAsync().GetAwaiter().GetResult().ToList();
 
-            Events = new List<EventData>
+            LoadEvents();
+            //Events = new List<DateEvent>
+            //{
+            //    new DateEvent() { Date = "2020-09-09", Fatigue = 3, Distraction = 7 },
+            //};
+        }
+
+        public async Task LoadEvents()
+        {
+            Events = new ObservableCollection<DateEvent>();
+
+            List<DateEvent> events = await _analysisService.GetDateEventsAsync();
+
+            foreach (var item in events)
             {
-                new EventData() { EventDate = "2020-09-09", Normal = 3, Disattention = 7 },
-                new EventData() { EventDate = "2020-09-08", Normal = 5, Disattention = 4 },
-                new EventData() { EventDate = "2020-09-07", Normal = 7, Disattention = 2 },
-                new EventData() { EventDate = "2020-09-06", Normal = 3, Disattention = 8 },
-                new EventData() { EventDate = "2020-09-05", Normal = 9, Disattention = 13 },
-                new EventData() { EventDate = "2020-09-04", Normal = 1, Disattention = 2 },
-            };
+                Events.Add(item);
+            }
+            
+
+            //MethodInfo methodInfo = chart.Series[0].GetType().GetMethod("OnBindingPathChanged",
+            //                        BindingFlags.NonPublic | BindingFlags.Instance);
+            //methodInfo?.Invoke(chart.Series[0], new object[] { null });
         }
     }
 }

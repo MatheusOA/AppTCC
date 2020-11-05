@@ -13,46 +13,38 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 using Xamarin.Essentials;
+using AppTCC.Services;
+using AppTCC.Models;
 
 namespace AppTCC.Views
 {
     public partial class MapsPage : ContentPage
     {
+        private SellingPointService _sellingPointService = new SellingPointService();
+        List<Place> placesList = new List<Place>();
+
         public MapsPage()
         {
             InitializeComponent();
 
             Task.Delay(2000);
             UpdateMap();
-        }
-
-        List<Place> placesList = new List<Place>();
+        }        
 
         private async void UpdateMap()
         {
             try
             {
-                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MapsPage)).Assembly;
-                Stream stream = assembly.GetManifestResourceStream("AppTCC.PlacesB.json");
-                string text = string.Empty;
-                using (var reader = new StreamReader(stream))
-                {
-                    text = reader.ReadToEnd();
-                }
-
-                var resultObject = JsonConvert.DeserializeObject<Places>(text);
+                List<SellingPoints> sellingPoints = await _sellingPointService.GetSellingPoints();
                 
-                foreach (var place in resultObject.results)
+                foreach (var place in sellingPoints)
                 {
                     placesList.Add(new Place
                     {
-                        PlaceName = place.name,
-                        Address = place.vicinity,
-                        Location = place.geometry.location,
-                        Position = new Position(place.geometry.location.lat, place.geometry.location.lng),
-                        //Icon = place.icon,
-                        //Distance = $"{GetDistance(lat1, lon1, place.geometry.location.lat, place.geometry.location.lng, DistanceUnit.Kiliometers).ToString("N2")}km",
-                        //OpenNow = GetOpenHours(place?.opening_hours?.open_now)
+                        PlaceName = place.Name,
+                        Address = place.Vicinity,
+                        Location = new Location() { lat = (float)place.Latitude, lng = (float)place.Longitude },
+                        Position = new Position((double)place.Latitude, (double)place.Longitude)
                     });
                 }
 
@@ -95,26 +87,13 @@ namespace AppTCC.Views
                     };
 
                     return place;
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
 
                 return null;
             }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
             catch (Exception ex)
             {
-                // Unable to get location
+                Console.WriteLine("Não foi possível pegar localização atual: " + ex.Message);
             }
 
             return null;        

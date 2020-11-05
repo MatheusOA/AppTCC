@@ -3,15 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:AppTCC.ViewModels"
-             
+              
              mc:Ignorable="d"
              x:Class="AppTCC.Views.LoginPage"
              Shell.NavBarIsVisible="False"
              Title="{Binding Title}">
-    <ContentPage.BindingContext>
-        <vm:LoginViewModel />
-    </ContentPage.BindingContext>
+
     
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="30">
@@ -22,8 +19,17 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
             </Grid>
-            <Entry StyleId="UserId" Text="{Binding Path=Username}" Placeholder="Usuário ou Email" />
-            <Entry StyleId="PasswordId" Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" />
+            <Entry x:Name="Username" 
+                   StyleId="UserId" 
+                   Text="{Binding Username}" 
+                   Placeholder="Usuário ou Email"
+                   Keyboard="Email"/>
+
+            <Entry x:Name="Password"
+                   StyleId="PasswordId" 
+                   Text="{Binding Password}" 
+                   Placeholder="Password" 
+                   IsPassword="true" />
 
             <Button x:Name="loginButton" 
                     StyleId="loginButton"
@@ -32,7 +38,7 @@
                     BorderRadius="0" 
                     TextColor="White" 
                     Text="LOG IN"
-                    Command="{Binding LoginCommand}" />
+                    Command="{Binding SubmitCommand}" />
 
         </StackLayout>
 

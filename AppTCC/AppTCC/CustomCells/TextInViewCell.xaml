@@ -19,7 +19,7 @@
                 <OnPlatform x:TypeArguments="x:Boolean" Android="true" iOS="false"/>
             </Frame.HasShadow>
             <Frame.BackgroundColor>
-                <OnPlatform x:TypeArguments="Color" Android="White" iOS="#F5F5F5"/>
+                <OnPlatform x:TypeArguments="Color" Android="#fdfd96" iOS="#F5F5F5"/>
             </Frame.BackgroundColor>
 
             <StackLayout>

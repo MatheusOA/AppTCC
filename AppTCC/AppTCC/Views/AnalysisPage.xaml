@@ -12,7 +12,7 @@
     <chart:SfChart>
 
         <chart:SfChart.Title>
-            <chart:ChartTitle Text="Normal vs Desatencao"/>
+            <chart:ChartTitle Text="Fatiga vs Desatencao"/>
         </chart:SfChart.Title>
 
         <chart:SfChart.Legend>
@@ -32,14 +32,16 @@
         </chart:SfChart.SecondaryAxis>
 
         <chart:ColumnSeries ItemsSource="{Binding Events}"
-                            XBindingPath="EventDate"
-                            YBindingPath="Normal"
-                            Label="Normal"/>
+                            XBindingPath="Date"
+                            YBindingPath="Fatigue"
+                            Label="Fatiga"
+                            ListenPropertyChange="True"/>
 
         <chart:ColumnSeries ItemsSource="{Binding Events}"
-                            XBindingPath="EventDate"
-                            YBindingPath="Disattention"
-                            Label="Desatencao"/>
+                            XBindingPath="Date"
+                            YBindingPath="Distraction"
+                            Label="Desatencao"
+                            ListenPropertyChange="True"/>
 
 
     </chart:SfChart>

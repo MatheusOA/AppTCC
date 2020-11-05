@@ -11,12 +11,13 @@ namespace AppTCC
 
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzE5ODY0QDMxMzgyZTMyMmUzMFNlVk9iNldyNDM2dEI5MUFqVHBOU1JXUUt6cUNVSTgyVC9CUmxFa2cyZU09");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzQ1NTY5QDMxMzgyZTMyMmUzMGRzOFo5c3lSdWJROHRIenhNYzRvZ2N5OUR3dkRFREpzUEp2T0FtcXFGb289");
 
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

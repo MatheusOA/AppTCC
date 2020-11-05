@@ -14,6 +14,7 @@ namespace AppTCC.ViewModels
 {
     public class SupportViewModel
     {
+        private MessageService _messageService = new MessageService();
         public ObservableRangeCollection<Message> ListMessages { get; }
         public ICommand SendCommand { get; set; }
         public string OutText { get; set; }
@@ -22,7 +23,9 @@ namespace AppTCC.ViewModels
         {
             ListMessages = new ObservableRangeCollection<Message>();
 
-            SendCommand = new Command(() =>
+            LoadMessages();
+
+            SendCommand = new Command(async () =>
             {
                 if (!string.IsNullOrWhiteSpace(OutText))
                 {
@@ -36,23 +39,29 @@ namespace AppTCC.ViewModels
                     OutText = string.Empty;
                     ListMessages.Add(message);
 
-                    SendFakeResponse();
+                    await SendMessage(message.Text);
                 }
             });
         }
 
-        public async Task SendFakeResponse()
+        public async Task LoadMessages()
         {
-            await Task.Delay(1000);
+            List<Message> messages = await _messageService.GetMessages();
 
-            var response = new Message
+            if (messages == null)
             {
-                Text = "Recurso ainda não funcional. Para dúvidas, entrar em contato com a equipe do Eye Tractor no site http://sitefake.com",
-                IsTextIn = true,
-                MessageDateTime = DateTime.Now
-            };
+                return;
+            }
 
-            ListMessages.Add(response);
+            foreach (Message message in messages)
+            {
+                ListMessages.Add(message);
+            }
+        }
+
+        public async Task SendMessage(string message)
+        {
+            await _messageService.SendMessage(message);
         }
     }
 }
